@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hi Baby 💘</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', 'Comic Sans MS', cursive;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffd1dc, #ffe6f2);
+        overflow: hidden;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.96);
+        padding: 35px;
+        border-radius: 30px;
+        text-align: center;
+        width: 360px;
+        box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+        animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.6); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+        color: #ff3b7f;
+        margin: 10px 0;
+    }
+
+    p {
+        color: #666;
+        font-size: 15px;
+    }
+
+    button {
+        padding: 14px 34px;
+        font-size: 16px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        margin: 12px;
+        transition: 0.2s;
+    }
+
+    .yes {
+        background: linear-gradient(135deg, #ff4d8d, #ff85b3);
+        color: white;
+    }
+
+    .no {
+        background: #e5e5e5;
+        position: absolute;
+        font-size: 18px;
+    }
+
+    .cat {
+        font-size: 75px;
+        animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+    }
+
+    /* FINAL QUESTION STYLES */
+    .final-small {
+        font-size: 14px;
+        color: #999;
+        letter-spacing: 1px;
+    }
+
+    .final-big {
+        font-size: 30px;
+        color: #ff3b7f;
+        margin: 12px 0 18px;
+    }
+
+    .note {
+        font-size: 12px;
+        color: #aaa;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    /* ERROR STYLE */
+    .error {
+        font-family: monospace;
+        color: #ff4d6d;
+    }
+
+    .loading {
+        font-size: 13px;
+        color: #aaa;
+        margin-top: 12px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- STEP 1 -->
+<div class="card" id="step1">
+    <div class="cat">🐱</div>
+    <h1>Hiiiii baby!!! 💕</h1>
+    <p>I have a cute lil question for you 🥺</p>
+    <button class="yes" onclick="readyStep()">Are you ready or nah? 👀</button>
+</div>
+
+<!-- STEP 2: FAKE ERROR (12s) -->
+<div class="card" id="step2" style="display:none;">
+    <h1 class="error">uh oh 😬</h1>
+    <p class="error">
+        ERROR 404: emotional stability not found<br><br>
+        brain.exe stopped working<br>
+        pls wait while I overthink this...
+    </p>
+    <div class="loading">⌛ buffering feelings…</div>
+</div>
+
+<!-- STEP 3 -->
+<div class="card" id="step3" style="display:none;">
+    <h1>hehehe 😏</h1>
+    <p>
+        okay listen… I lied 😼<br>
+        caught you staying though
+    </p>
+    <button class="yes" onclick="finalQuestion()">okay fineee 🙄</button>
+</div>
+
+<!-- STEP 4: FINAL QUESTION -->
+<div class="card" id="step4" style="display:none;">
+    <p class="final-small">okayyy final questionnn 💗</p>
+
+    <h1 class="final-big">
+        will you be my Valentine? 💖
+    </h1>
+
+    <p class="note">not allowed to click no hehe 😼</p>
+
+    <button class="yes" onclick="accepted()">YESSS 💘</button>
+    <button class="no" id="noBtn">no 🥲</button>
+</div>
+
+<script>
+function readyStep() {
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
+
+    setTimeout(() => {
+        document.getElementById('step2').style.display = 'none';
+        document.getElementById('step3').style.display = 'block';
+    }, 12000);
+}
+
+function finalQuestion() {
+    document.getElementById('step3').style.display = 'none';
+    document.getElementById('step4').style.display = 'block';
+}
+
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - 140);
+    const y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+});
+
+function accepted() {
+    document.body.innerHTML = `
+        <div class="card">
+            <div class="cat">😻</div>
+            <h1>AS YOU SHOULD 💞</h1>
+            <p>
+                congrats 😌<br>
+                you are officially my Valentine 💐<br><br>
+                locked in. no exits. no refunds. 💋
+            </p>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
